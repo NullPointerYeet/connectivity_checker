@@ -1,8 +1,8 @@
-from PyQt5.QtWidgets import (QApplication, QSystemTrayIcon, QMenu, QWidget, 
+from PyQt6.QtWidgets import (QApplication, QSystemTrayIcon, QMenu, QWidget, 
                             QInputDialog, QMessageBox, QDialog, QVBoxLayout, 
                             QLabel, QComboBox, QPushButton)
-from PyQt5.QtGui import QIcon, QPixmap, QPainter, QColor, QDesktopServices
-from PyQt5.QtCore import QTimer, Qt, QUrl
+from PyQt6.QtGui import QIcon, QPixmap, QPainter, QColor, QDesktopServices
+from PyQt6.QtCore import QTimer, Qt, QUrl
 import sys
 import ping3
 import datetime
@@ -75,13 +75,13 @@ class NetworkMonitor(QWidget):
 
     def create_circle_icon(self, color):
         pixmap = QPixmap(22, 22)
-        pixmap.fill(Qt.transparent)
+        pixmap.fill(Qt.GlobalColor.transparent)
         
         painter = QPainter(pixmap)
-        painter.setRenderHint(QPainter.Antialiasing)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         
         painter.setBrush(QColor(color))
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.drawEllipse(1, 1, 20, 20)
         painter.end()
         
@@ -246,4 +246,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
     monitor = NetworkMonitor()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

@@ -1,6 +1,11 @@
 import os
+from PyQt6.QtWidgets import QApplication
+import sys
 from icon import create_app_icon
-from PyQt5.QtGui import QIcon
+from PyQt6.QtGui import QIcon
+
+# Initialize QApplication first
+app = QApplication(sys.argv)
 
 # Create and save the icon
 pixmap = create_app_icon()
@@ -15,4 +20,4 @@ img.save("app_icon.ico")
 os.remove("app_icon.png")
 
 # Run PyInstaller
-os.system("pyinstaller build.spec") 
+os.system("pyinstaller build.spec")
