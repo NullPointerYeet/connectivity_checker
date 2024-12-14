@@ -2,6 +2,13 @@
 
 A desktop application for monitoring network connectivity with real-time status updates and notifications.
 
+## Releases
+
+You can download the latest release for your operating system from the [Releases page](https://github.com/matijamandic/network-monitor/releases).
+
+Available versions:
+- Windows (.zip)
+
 ## Features
 
 - Real-time network connectivity monitoring
