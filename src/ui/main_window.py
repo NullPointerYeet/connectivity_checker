@@ -1,9 +1,10 @@
 from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QCheckBox, 
                            QPushButton, QGroupBox, QSpinBox, QLabel, QHBoxLayout, 
                            QDialogButtonBox, QApplication, QMainWindow, QWidget,
-                           QTextEdit, QSplitter)
+                           QTextEdit, QSplitter, QSystemTrayIcon, QSystemTrayIcon)
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtGui import QPixmap
+from src.ui.icons import create_app_icon
 import json
 import os
 
@@ -14,6 +15,7 @@ class MainWindow(QMainWindow):
         self.settings = settings
         self.setWindowTitle("Network Monitor")
         self.setMinimumSize(800, 600)
+        self.setWindowIcon(create_app_icon())
         self.setup_ui()
 
     def setup_ui(self):
@@ -162,3 +164,20 @@ class MainWindow(QMainWindow):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_entry = f"[{timestamp}] Status: {status}, Ping: {ping}"
         self.log_text.append(log_entry)
+
+    def closeEvent(self, event):
+        """Hide window instead of closing it"""
+        event.ignore()
+        self.hide()
+
+    def changeEvent(self, event):
+        if event.type() == event.Type.WindowStateChange:  # Use event.Type.WindowStateChange
+            if self.isMinimized():  # Simpler way to check if window is minimized
+                # Hide the window and show notification
+                self.hide()
+                self.monitor.system_tray.showMessage(
+                    "Network Monitor",
+                    "Application is still running in the system tray",
+                    QSystemTrayIcon.MessageIcon.Information,
+                    2000
+                )

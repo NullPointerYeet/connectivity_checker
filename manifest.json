@@ -1,0 +1,11 @@
+{
+    "name": "Network Monitor",
+    "version": "1.0.0",
+    "description": "Network connectivity monitoring tool",
+    "icons": [
+        {
+            "src": "icon.ico",
+            "sizes": "64x64"
+        }
+    ]
+}

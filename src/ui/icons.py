@@ -3,7 +3,7 @@ from PyQt6.QtGui import QIcon, QPixmap, QPainter, QColor
 from PyQt6.QtCore import Qt
 
 def create_app_icon():
-    # Create a 64x64 pixel pixmap for app icon
+    """Create the main application icon"""
     pixmap = QPixmap(64, 64)
     pixmap.fill(Qt.GlobalColor.transparent)
     
@@ -20,14 +20,10 @@ def create_app_icon():
     painter.drawEllipse(12, 12, 40, 40)
     
     painter.end()
-    return pixmap
+    return QIcon(pixmap)
 
 def create_status_icon(status):
-    """Create status-specific icons for the system tray
-    
-    Args:
-        status (str): Either 'connected' or 'disconnected'
-    """
+    """Create status-specific icons for the system tray"""
     pixmap = QPixmap(64, 64)
     pixmap.fill(Qt.GlobalColor.transparent)
     
@@ -42,8 +38,12 @@ def create_status_icon(status):
     # Draw inner circle with status-specific color
     if status == "connected":
         color = QColor("#2ecc71")  # Green
-    else:
+    elif status == "disconnected":
         color = QColor("#e74c3c")  # Red
+    elif status == "paused":
+        color = QColor("#f1c40f")  # Yellow
+    else:
+        color = QColor("#95a5a6")  # Gray (fallback)
         
     painter.setBrush(color)
     painter.drawEllipse(12, 12, 40, 40)
