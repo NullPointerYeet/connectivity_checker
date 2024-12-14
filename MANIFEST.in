@@ -1,0 +1,4 @@
+include src/**/*.py
+include src/**/*.json
+include src/**/*.csv
+include app_icon.ico

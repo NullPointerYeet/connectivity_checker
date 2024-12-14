@@ -48,3 +48,6 @@ app_icon.ico
 *.qm
 *.ts
 settings.json
+
+old
+tests
